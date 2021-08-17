@@ -1,6 +1,6 @@
 <template>
     <div class="forca">
-        <img src="../assets/1.svg">
+        <img :src="`https://raw.githubusercontent.com/william-costa/wdev-hangman-game-resources/master/images/hangman/${erros}.svg`">
        </div> 
     
 </template>

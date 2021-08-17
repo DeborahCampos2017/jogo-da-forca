@@ -19,6 +19,13 @@
  <section v-if="tela === 'jogo'" id="jogo">
      <Jogo
      :erros = "erros"
+     :palavra = "palavra"
+     :dica = "dica"
+     :verificarLetra="verificarLetra"
+     :etapa="etapa"
+     :letras="letras"
+     :jogar="jogar"
+     :jogarNovamente="jogarNovamente"
      />
    </section>
 
@@ -38,7 +45,8 @@ export default {
       etapa: 'palavra',
       palavra: '',
       dica: '',
-      erros: '1',
+      erros: '0',
+      letras:[],
     }
   },
   components: {
@@ -54,9 +62,39 @@ export default {
       this.dica = dica;
       this.tela = 'jogo';
       this.etapa = 'jogo';
+    },
+    verificarLetra: function(letra){
+      return this.letras.find(item => item.toLowerCase() === letra.toLowerCase());
+    },
+    jogar: function(letra){
+      this.letras.push(letra);
+      this.verificarErros(letra)
+    },
+    verificarErros: function(letra){
+      if(this.palavra.toLowerCase().indexOf(letra.toLowerCase())>=0){
+        return this.verificarAcertos();
+      }
+      this.erros++;
+
+      if(this.erros === 6){
+        this.etapa = 'enforcado'
+      }
+  },
+  verificarAcertos: function (){
+    let letrasUnicas = [...new Set(this.palavra.split(''))];
+    if (letrasUnicas.length === (this.letras.length - this.erros)){
+      this.etapa = 'ganhador';
     }
   },
-   
+  jogarNovamente: function(){
+    this.palavra = '';
+    this.dica = '';
+    this.erros = 0;
+    this.letras = [];
+    this.tela = 'inicio';
+    this.etapa = 'palavra';
+  }
+  }
   }
 
 </script>
