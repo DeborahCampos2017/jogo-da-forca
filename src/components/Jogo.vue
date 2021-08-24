@@ -16,12 +16,6 @@
          :jogar="jogar"
          />
 
-          <Final v-if="etapa" != 'jogo'
-          :etapa="etapa"
-          :texto=" etapa === 'ganhador' ? 'Parabéns =)' : 'Perdeu =('"
-          :jogarNovamente="jogarNovamente"
-          />
-
        </div> 
     
 </template>
@@ -30,7 +24,7 @@
 import Forca from './Forca.vue';
 import Palavra from './Palavra.vue';
 import Teclado from './Teclado.vue';
-import Final from './Final.vue';
+
 
 export default {
     name:'Jogo',
@@ -56,7 +50,6 @@ export default {
         Forca,
         Palavra,
         Teclado,
-        Final,
     },
 }
 </script>
