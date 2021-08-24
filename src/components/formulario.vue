@@ -5,8 +5,9 @@
     </div>
     <input type="text" class="formulario-input" v-model="inputValue">
     <button :disabled="inputValue.length === 0"
-    v-on:click="OnSubmit"
-    >{{button}}</button>
+    v-on:click="OnSubmit">
+    {{button}}
+    </button>
        </div> 
     
 </template>
